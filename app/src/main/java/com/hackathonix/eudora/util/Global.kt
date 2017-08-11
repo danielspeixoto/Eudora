@@ -1,4 +1,4 @@
-package com.hackathonix.eudora
+package com.hackathonix.eudora.util
 
 import android.widget.TextView
 

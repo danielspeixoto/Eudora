@@ -1,6 +1,7 @@
-package com.hackathonix.eudora
+package com.hackathonix.eudora.view.recycler.adapter
 
 import android.support.v7.widget.RecyclerView
+import com.hackathonix.eudora.view.activity.BaseActivity
 
 /**
  * Created by daniel on 8/10/17.

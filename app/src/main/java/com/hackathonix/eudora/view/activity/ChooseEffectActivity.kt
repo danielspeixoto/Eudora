@@ -1,18 +1,14 @@
 
-package com.hackathonix.eudora
+package com.hackathonix.eudora.view.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
-import android.view.MotionEvent
-import android.view.View
 import android.widget.LinearLayout
+import com.hackathonix.eudora.util.IMakeEffect
+import com.hackathonix.eudora.model.RedEffect
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.verticalLayout
@@ -29,7 +25,6 @@ class ChooseEffectActivity  : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        effect = intent.getSerializableExtra("effect") as IMakeEffect
         layout = verticalLayout {
             lparams(width = matchParent, height = matchParent)
             onClick {
