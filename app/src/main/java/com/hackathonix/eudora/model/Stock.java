@@ -63,7 +63,9 @@ public class Stock {
 
     public List<Client> getClientFromProduct(String productName){
         List<Client> soldItems = this.productsClients.get(productName);
-        Collections.reverse(soldItems);
+        if(soldItems != null) {
+            Collections.reverse(soldItems);
+        }
         return soldItems;
     }
 

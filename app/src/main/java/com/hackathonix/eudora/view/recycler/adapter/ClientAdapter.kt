@@ -43,7 +43,7 @@ class ClientAdapter(activity: Context) :
 
         // lateinit var nameText: TextView
         lateinit var cardView: CardView
-        lateinit var image: ImageView
+//        lateinit var image: ImageView
         lateinit var text: TextView
 
         override fun createView(ui: AnkoContext<ViewGroup>): View {
@@ -60,20 +60,20 @@ class ClientAdapter(activity: Context) :
 //                            }
 //                        }
 
-                        relativeLayout() {
-                            image = imageView().lparams(width = 80) {
-                                id = 9023
-                                alignParentLeft()
-                            }
+                        linearLayout() {
+//                            image = imageView().lparams(width = 80) {
+//                                id = 9023
+//                                alignParentLeft()
+//                            }
+                            padding = 50
                             text = textView() {
                                 id = 234292
                                 textSize = (PARAM_LAYOUT * 2).toFloat()
                             }.lparams {
-                                rightOf(image)
                                 leftPadding = 70
                             }
                         }
-                    }.lparams(width = matchParent, height = 540) {
+                    }.lparams(width = matchParent) {
                         margin = dip(PARAM_LAYOUT / 2)
                     }
                 }
@@ -84,7 +84,7 @@ class ClientAdapter(activity: Context) :
             val holder = ClientHolder(createView(ui))
 //            holder.nameText = nameText
             holder.cardView = cardView
-            holder.image = image
+//            holder.image = image
             holder.text = text
             return holder
         }
@@ -95,13 +95,13 @@ class ClientAdapter(activity: Context) :
 
         //    lateinit var nameText: TextView
         lateinit var cardView: CardView
-        lateinit var image: ImageView
+//        lateinit var image: ImageView
         lateinit var text: TextView
 
         override fun onPostCreated() {
             //     nameText.text = item!!.name
             text.text = item!!.name
-            image.setImageResource(item!!.picture)
+//            image.setImageResource(item!!.picture)
         }
     }
 

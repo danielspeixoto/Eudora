@@ -58,7 +58,7 @@ class GoalsActivity : BaseActivity() {
                     button() {
                         backgroundColor = Color.TRANSPARENT
                         textColor = gold
-                        text = "$" + price
+                        text = "R$" + price
                         onClick {
                             Message.data = list as ArrayList<Product>
                             startActivity<ProductGoalActivity>()
@@ -71,7 +71,7 @@ class GoalsActivity : BaseActivity() {
                     button() {
                         backgroundColor = Color.TRANSPARENT
                         textColor = gold
-                        text = "$" + price2
+                        text = "R$" + price2
                         onClick {
                             Message.data = list2 as ArrayList<Product>
                             startActivity<ProductGoalActivity>()
