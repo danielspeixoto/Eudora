@@ -30,6 +30,7 @@ public class Client implements Serializable{
 
     public void buy(Product product, int amount){
         this.purchases.add(new Purchase());
+        Stock.getInstance().registerSoldIten(product, amount);
     }
 
     public Map<Integer, Integer> getStatistics(){
