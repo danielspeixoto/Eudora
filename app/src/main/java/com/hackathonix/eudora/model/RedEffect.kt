@@ -22,6 +22,6 @@ class RedEffect: Serializable, IMakeEffect() {
         val blue = Color.blue(colour)
         val green = Color.green(colour)
         val alpha = Color.alpha(colour)
-        bitmap.setPixel(x ,y, Color.argb(alpha, Math.min((red * 1.05), 255.0).toInt(), green, blue))
+        bitmap.setPixel(x ,y, Color.argb(alpha, Math.min((red * 1.15), 255.0).toInt(), green, blue))
     }
 }

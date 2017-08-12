@@ -1,5 +1,6 @@
 package com.hackathonix.eudora.view.recycler.adapter
 
+import android.graphics.Color
 import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -39,26 +40,25 @@ class DrawerAdapter(activity: BaseActivity) :
 
     class InfoUI : AnkoComponent<ViewGroup> {
 
-        lateinit var nameText: TextView
-        lateinit var cardView: CardView
-
-        //TODO
         override fun createView(ui: AnkoContext<ViewGroup>): View {
             return with(ui) {
-                linearLayout {
+                verticalLayout {
                     lparams(width = matchParent)
-                    cardView = cardView {
-                        linearLayout {
-                            lparams(width = matchParent) {
-                                padding = dip(PARAM_LAYOUT * 2)
-                            }
-                            orientation = LinearLayout.HORIZONTAL
-                            nameText = textView {
-                                textSize = 26f
-                            }
+                    padding = 40
+                    backgroundColor = BaseActivity.purple
+                    relativeLayout {
+                        var image = imageView {
+
+                        }.lparams(600, 600) {
+                            centerHorizontally()
                         }
-                    }.lparams(width = matchParent) {
-                        margin = dip(PARAM_LAYOUT / 2)
+                        image.setImageResource(UserModel.currentUser!!.image!!)
+
+                    }.lparams(width = matchParent)
+                    textView(UserModel.currentUser!!.name) {
+                        textColor = Color.WHITE
+                        textSize = (PARAM_LAYOUT * 3).toFloat()
+                        textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                     }
                 }
             }
@@ -66,8 +66,6 @@ class DrawerAdapter(activity: BaseActivity) :
 
         fun createHolder(ui: AnkoContext<ViewGroup>): ProductAdapter.ProductHolder {
             val holder = ProductAdapter.ProductHolder(createView(ui))
-            //holder.nameText = nameText
-            holder.cardView = cardView
             return holder
         }
 
@@ -75,26 +73,15 @@ class DrawerAdapter(activity: BaseActivity) :
 
     class ShareUI : AnkoComponent<ViewGroup> {
 
-        lateinit var nameText: TextView
-        lateinit var cardView: CardView
-
-        //TODO
         override fun createView(ui: AnkoContext<ViewGroup>): View {
             return with(ui) {
-                linearLayout {
-                    lparams(width = matchParent)
-                    cardView = cardView {
-                        linearLayout {
-                            lparams(width = matchParent) {
-                                padding = dip(PARAM_LAYOUT * 2)
-                            }
-                            orientation = LinearLayout.HORIZONTAL
-                            nameText = textView {
-                                textSize = 26f
-                            }
-                        }
-                    }.lparams(width = matchParent) {
-                        margin = dip(PARAM_LAYOUT / 2)
+                relativeLayout() {
+                    textView("eudora.com/revenda/" + UserModel.currentUser!!.name) {
+                        textSize = PARAM_LAYOUT.toFloat() * 2
+                    }.lparams {
+                        centerHorizontally()
+                    }
+                    lparams(width = matchParent) {
                     }
                 }
             }
@@ -102,8 +89,6 @@ class DrawerAdapter(activity: BaseActivity) :
 
         fun createHolder(ui: AnkoContext<ViewGroup>): ProductAdapter.ProductHolder {
             val holder = ProductAdapter.ProductHolder(createView(ui))
-//            holder.nameText = nameText
-            holder.cardView = cardView
             return holder
         }
 
@@ -120,8 +105,8 @@ class DrawerAdapter(activity: BaseActivity) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(position > 0 && position < data.size) {
-            super.onBindViewHolder(holder, position)
+        if(position > 0 && position <= data.size) {
+            super.onBindViewHolder(holder, position - 1)
         }
 
     }

@@ -14,11 +14,15 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.FaceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".view.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".view.activity.InfoProductActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".view.activity.HomeActivity"
             android:screenOrientation="portrait"

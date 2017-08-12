@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import com.hackathonix.eudora.R
+import com.hackathonix.eudora.R.drawable.purple
 import com.hackathonix.eudora.model.UserModel
 import com.hackathonix.eudora.util.PARAM_LAYOUT
 import com.hackathonix.eudora.view.activity.custom.EditField
@@ -22,8 +23,6 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var purple = Color.rgb(82,44,132)
-        var gold = Color.rgb(193,159,88)
         relativeLayout {
             backgroundColor = purple
             verticalLayout {

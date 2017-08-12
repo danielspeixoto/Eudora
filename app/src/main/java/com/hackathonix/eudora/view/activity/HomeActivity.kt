@@ -64,21 +64,19 @@ class HomeActivity : BaseActivity()  {
                 setSupportActionBar(toolbar)
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 coordinatorLayout {
-                    refreshLayout = swipeRefreshLayout {
-                        list = recyclerView {
-                            layoutManager = GridLayoutManager(this@HomeActivity, 2)
-                            adapter = visitorAdapter
-                            ProductModel.products.forEach {
-                                visitorAdapter.addItem(it)
-                            }
-                        }.lparams(width = matchParent, height = matchParent)
+                    list = recyclerView {
+                        layoutManager = GridLayoutManager(this@HomeActivity, 2)
+                        adapter = visitorAdapter
+                        ProductModel.products.forEach {
+                            visitorAdapter.addItem(it)
+                        }
                     }.lparams(width = matchParent, height = matchParent)
                 }.lparams(width = matchParent, height = matchParent)
             }.lparams(width = matchParent, height = matchParent)
             drawer = recyclerView {
+                backgroundColor = gold
                 layoutManager = LinearLayoutManager(this@HomeActivity)
                 adapter = drawerAdapter
-                backgroundColor = Color.WHITE
             }.lparams(width = matchParent, height = matchParent) {
                 gravity = Gravity.START
             }

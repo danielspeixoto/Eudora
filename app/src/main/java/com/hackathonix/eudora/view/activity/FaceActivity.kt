@@ -2,13 +2,17 @@ package com.hackathonix.eudora.view.activity
 
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.widget.ImageView
+import com.hackathonix.eudora.R
+import com.hackathonix.eudora.R.drawable.purple
+import com.hackathonix.eudora.R.string.save
 import com.hackathonix.eudora.util.IMakeEffect
 import com.hackathonix.eudora.util.PARAM_LAYOUT
 import org.jetbrains.anko.*
 
 
-class FaceActivity : android.support.v7.app.AppCompatActivity() {
+class FaceActivity : BaseActivity() {
 
     val REQUEST_IMAGE_CAPTURE = 1
 
@@ -20,21 +24,44 @@ class FaceActivity : android.support.v7.app.AppCompatActivity() {
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         effect = getIntent().getSerializableExtra("effect") as IMakeEffect
-        relativeLayout() {
-            backgroundColor = Color.BLACK
-            layout = imageView {
-                scaleType = ImageView.ScaleType.FIT_CENTER
-            }.lparams(width = matchParent, height = matchParent) {
-                centerInParent()
+        verticalLayout {
+            backgroundColor = purple
+            relativeLayout {
+                layout = imageView {
+//                    padding = 10
+//                    backgroundColor = gold
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                }.lparams(width = matchParent, height = 1400) {
+                    margin = 90
+                    bottomMargin = 30
+                }
             }
-            textView(effect.name) {
-                textColor = Color.WHITE
-                textSize = (PARAM_LAYOUT * 4).toFloat()
-            }.lparams(width = wrapContent) {
-                centerHorizontally()
-                padding = 40
-                below(layout)
-            }
+            relativeLayout {
+                // photo again or save
+                var save = imageView{
+
+                }.lparams(80, 80) {
+                    alignParentLeft()
+                    leftMargin = 220                }
+                save.setImageResource(R.drawable.ic_save)
+
+                var camera = imageView {
+                    onClick {
+                        dispatchTakePictureIntent()
+                    }
+                }.lparams(80, 80) {
+                    alignParentRight()
+                    rightMargin = 220                }
+                camera.setImageResource(R.mipmap.ic_camera)
+            }.lparams(width = matchParent)
+//            textView(effect.name) {
+//                textColor = Color.WHITE
+//                textSize = (PARAM_LAYOUT * 4).toFloat()
+//            }.lparams(width = wrapContent) {
+//                centerHorizontally()
+//                padding = 40
+//                below(layout)
+//            }
         }
         layout.setOnTouchListener(object : android.view.View.OnTouchListener {
             override fun onTouch(p0: android.view.View?, p1: android.view.MotionEvent?): Boolean {

@@ -1,5 +1,6 @@
 package com.hackathonix.eudora.view.activity
 
+import android.graphics.Color
 import com.hackathonix.eudora.util.PARAM_LAYOUT
 import org.jetbrains.anko.*
 
@@ -10,6 +11,11 @@ abstract class BaseActivity : android.support.v7.app.AppCompatActivity() {
     val TAG = javaClass.simpleName
 
     lateinit var loadingDialog : android.app.ProgressDialog
+    companion object {
+        var purple = Color.rgb(82,44,132)
+        var gold = Color.rgb(193,159,88)
+    }
+
 
     val activity: com.hackathonix.eudora.view.activity.BaseActivity
         get() = this

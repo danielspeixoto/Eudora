@@ -14,9 +14,11 @@ object ProductModel {
                 R.drawable.kiss_me_batom_mate_rosa_corajosa,
                16.99))
 
+        products[0].canTry = true
+
         products.add(Product("LÚMIS AMOUR DEO COLÔNIA 100ML",
                 R.drawable.lumis_amour_del_colonia,
-                64.90))
+                64.99))
 
         products.add(Product("MÁSCARA SIÀGE PROLONGA O LISO 250G",
                 R.drawable.mascara_siage_prolonga_o_liso,
@@ -46,16 +48,12 @@ object ProductModel {
                 R.drawable.oleo_massagem_hot,
                 58.99))
 
-        products.add(Product("ÓLEO DE MASSAGEM HOT S. 100ML",
-                R.drawable.gel_creme_clareador,
-                65.99))
-
         products.add(Product("AURIEN LOÇÃO ILUMINADORA DES, CORPORAL 200ML",
                 R.drawable.aurien_locao_iluminadora,
                 44.99))
 
         products.add(Product("PÓ COMPACTO B SOUL GO MATE",
-                R.drawable.po_compacto_bsoul_gomate,
+                R.drawable.po_compact_bsoul_gomate,
                 28.99))
     }
 
