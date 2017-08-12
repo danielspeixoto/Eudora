@@ -8,6 +8,7 @@ import com.hackathonix.eudora.model.RedEffect
 import com.hackathonix.eudora.util.PARAM_LAYOUT
 import org.jetbrains.anko.*
 import android.widget.CompoundButton
+import com.hackathonix.eudora.model.ClientModel
 import com.hackathonix.eudora.model.Stock
 import com.hackathonix.eudora.view.recycler.adapter.ClientAdapter
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -57,7 +58,8 @@ class InfoProductActivity : BaseActivity() {
                     swt.isChecked = true
                 }
                 recyclerView {
-                    var adp = ClientAdapter(this)
+                    var adp = ClientAdapter(this@InfoProductActivity)
+//                    adp.addItem(ClientModel)
                     Stock.getInstance().getSalesNumber(product)
                 }
                 if(product.canTry) {
