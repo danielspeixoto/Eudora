@@ -36,21 +36,22 @@ class LoginActivity : BaseActivity() {
                 }.lparams(width = matchParent)
                 verticalLayout {
                     email = editField {
-                        textColor = purple
+                        textColor = gold
+                        backgroundColor = lightPurple
                         hint = "Email"
                         inputType = InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
                     }.lparams(width = matchParent) {
                         bottomMargin = 30
                     }
-                    email.getBackground().mutate().setColorFilter(getResources().getColor(R.color.golden_eu), PorterDuff.Mode.SRC_ATOP);
+
                     password = editField {
-                        textColor = purple
+                        textColor = gold
+                        backgroundColor = lightPurple
                         hint = "Senha"
                         inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_WEB_PASSWORD
                     }.lparams(width = matchParent) {
                         bottomMargin = 60
                     }
-                    password.getBackground().mutate().setColorFilter(getResources().getColor(R.color.golden_eu), PorterDuff.Mode.SRC_ATOP);
                 }.lparams(width = matchParent) {
                     bottomPadding = 90
                     topPadding = bottomPadding

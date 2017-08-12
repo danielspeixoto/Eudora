@@ -27,16 +27,6 @@ class FaceActivity : BaseActivity() {
         effect = getIntent().getSerializableExtra("effect") as IMakeEffect
         verticalLayout {
             backgroundColor = gold
-            textView("#SOUEUDORA") {
-                textSize = (PARAM_LAYOUT * 4).toFloat()
-                textColor = Color.WHITE
-                setTypeface(null, Typeface.BOLD);
-            }.lparams {
-                leftMargin = 100
-                topMargin = 50
-                bottomMargin = 0
-                bottomPadding = 0
-            }
             relativeLayout {
                 layout = imageView {
 //                    padding = 10

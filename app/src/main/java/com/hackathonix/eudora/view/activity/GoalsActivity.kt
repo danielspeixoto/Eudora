@@ -24,7 +24,7 @@ class GoalsActivity : BaseActivity() {
         nestedScrollView {
             lparams(matchParent, matchParent)
             verticalLayout {
-                textView("Faltam R$" + (user.goal - user.money) + " para atingir a sua meta") {
+                textView("Faltam R$" + (user.goal - user.money).toInt() + " para atingir a sua meta") {
                     textColor = purple
                     textSize = (PARAM_LAYOUT * 2.5).toFloat()
                     padding = (PARAM_LAYOUT * 2)
@@ -49,9 +49,9 @@ class GoalsActivity : BaseActivity() {
                 )
                 var list2 = Stock.getInstance().bestSellerByCategory(Category.ACCESSORIES, 1)
                 var price2 = 0.0
-                list.forEach({
-                    price2 += it.price
-                }
+                list2.forEach({
+                        price2 += it.price
+                    }
                 )
                 relativeLayout() {
                     padding = 50
