@@ -17,6 +17,9 @@ public class Client implements Serializable{
     private String name;
     private int picture;
 
+    public String getName() {
+        return name;
+    }
 
     public Client(String name, int picture){
         this.name = name;
@@ -30,7 +33,7 @@ public class Client implements Serializable{
 
     public void buy(Product product, int amount){
         this.purchases.add(new Purchase());
-        Stock.getInstance().registerSoldIten(product, amount);
+        Stock.getInstance().registerSoldIten(product, amount, this);
     }
 
     public Map<Integer, Integer> getStatistics(){

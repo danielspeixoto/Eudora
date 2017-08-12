@@ -17,10 +17,12 @@ import java.util.TreeMap;
 
 public class Stock {
     private List<SoldItem> soldProducts;
+    private Map<String, List<SoldItem>> productsClients;
     private static Stock stock;
 
     private Stock(){
         this.soldProducts = new ArrayList<>();
+        this.productsClients = new HashMap<>();
     }
 
     public static Stock getInstance(){
@@ -42,14 +44,27 @@ public class Stock {
         return this.find(prod.getName()).getAmount();
     }
 
-    public void registerSoldIten(Product prod, int amount){
+    public void registerSoldIten(Product prod, int amount, Client client){
         SoldItem item = this.find(prod.getName());
 
         if(item != null) {
             item.inc(amount);
         } else {
-            soldProducts.add(new SoldItem(prod, amount));
+            item = new SoldItem(prod, amount);
+            soldProducts.add(item);
         }
+        List<SoldItem> soldItems = this.productsClients.get(client.getName());
+        if(soldItems == null){
+            soldItems = new ArrayList<>();
+        }
+        soldItems.add(item);
+        this.productsClients.put(client.getName(), soldItems);
+    }
+
+    public List<SoldItem> getClientPurchases(String clientName){
+        List<SoldItem> soldItems = this.productsClients.get(clientName);
+        Collections.reverse(soldItems);
+        return soldItems;
     }
 
     // k = number of best sellers, cat = category
