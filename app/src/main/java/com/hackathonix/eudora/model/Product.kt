@@ -1,5 +1,7 @@
 package com.hackathonix.eudora.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import java.io.Serializable
 
 /**

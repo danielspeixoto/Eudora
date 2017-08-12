@@ -18,6 +18,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import java.security.Permissions
 import android.support.v4.content.ContextCompat.startActivity
+import android.util.Log
 
 /**
  * Created by daniel on 8/11/17.
@@ -43,16 +44,16 @@ class DrawerAdapter(activity: BaseActivity) :
         override fun createView(ui: AnkoContext<ViewGroup>): View {
             return with(ui) {
                 verticalLayout {
+                    Log.d("teste", UserModel.currentUser!!.image!!.toString())
                     lparams(width = matchParent)
                     padding = 40
                     backgroundColor = BaseActivity.purple
                     relativeLayout {
                         var image = imageView {
-
+                            setImageResource(UserModel.currentUser!!.image!!)
                         }.lparams(600, 600) {
                             centerHorizontally()
                         }
-                        image.setImageResource(UserModel.currentUser!!.image!!)
 
                     }.lparams(width = matchParent)
                     textView(UserModel.currentUser!!.name) {

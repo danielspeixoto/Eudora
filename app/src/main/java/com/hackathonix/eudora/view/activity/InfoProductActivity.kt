@@ -14,7 +14,6 @@ import android.widget.CompoundButton
 /**
  * Created by daniel on 8/11/17.
  */
-//TODO implement
 class InfoProductActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

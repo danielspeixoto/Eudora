@@ -16,7 +16,6 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity<HomeActivity>()
         linearLayout {
             lparams(width = matchParent, height = matchParent)
             image = imageView().lparams(width = matchParent, height = matchParent)
@@ -34,8 +33,7 @@ class MainActivity : BaseActivity() {
                     Thread.sleep(1000)
                 }
                 this@MainActivity.runOnUiThread({
-                    //TODO remove
-                    //startActivity<LoginActivity>()
+                    startActivity<LoginActivity>()
                     finish()
                 })
             }

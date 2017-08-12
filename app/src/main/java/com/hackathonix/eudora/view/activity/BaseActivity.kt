@@ -14,6 +14,7 @@ abstract class BaseActivity : android.support.v7.app.AppCompatActivity() {
     companion object {
         var purple = Color.rgb(82,44,132)
         var gold = Color.rgb(193,159,88)
+        var lightPurple = Color.rgb(108, 76, 149)
     }
 
 

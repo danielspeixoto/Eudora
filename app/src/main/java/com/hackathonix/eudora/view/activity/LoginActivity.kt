@@ -71,7 +71,7 @@ class LoginActivity : BaseActivity() {
                         textColor = purple
                         padding = PARAM_LAYOUT * 2
                         onClick {
-                            UserModel.logIn(email.text.toString(), password.text.toString()).subscribe( {_ ->
+                            UserModel.logIn(email.text.toString(), password.text.toString()).subscribe( { usr ->
                                 startActivity<HomeActivity>()
                             })
                         }

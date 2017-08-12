@@ -1,6 +1,7 @@
 package com.hackathonix.eudora.view.activity
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.widget.ImageView
@@ -25,7 +26,17 @@ class FaceActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         effect = getIntent().getSerializableExtra("effect") as IMakeEffect
         verticalLayout {
-            backgroundColor = purple
+            backgroundColor = gold
+            textView("#SOUEUDORA") {
+                textSize = (PARAM_LAYOUT * 4).toFloat()
+                textColor = Color.WHITE
+                setTypeface(null, Typeface.BOLD);
+            }.lparams {
+                leftMargin = 100
+                topMargin = 50
+                bottomMargin = 0
+                bottomPadding = 0
+            }
             relativeLayout {
                 layout = imageView {
 //                    padding = 10
@@ -33,7 +44,9 @@ class FaceActivity : BaseActivity() {
                     scaleType = ImageView.ScaleType.FIT_CENTER
                 }.lparams(width = matchParent, height = 1400) {
                     margin = 90
-                    bottomMargin = 30
+                    topMargin = 0
+                    topPadding = 0
+                    bottomMargin = 20
                 }
             }
             relativeLayout {

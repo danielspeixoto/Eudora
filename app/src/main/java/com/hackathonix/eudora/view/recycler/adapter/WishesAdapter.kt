@@ -3,35 +3,27 @@ package com.hackathonix.eudora.view.recycler.adapter
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.hackathonix.eudora.model.Link
+import com.hackathonix.eudora.model.UserModel
 import com.hackathonix.eudora.util.PARAM_LAYOUT
 import com.hackathonix.eudora.view.activity.BaseActivity
-import com.hackathonix.eudora.view.recycler.holder.BaseHolder
+import com.hackathonix.eudora.view.activity.GoalsActivity
 import org.jetbrains.anko.*
 
 /**
- * Created by daniel on 8/11/17.
+ * Created by daniel on 8/12/17.
  */
-open class LinksAdapter(activity: Context) :
-        BaseAdapter<Link>(activity) {
+class WishesAdapter(activity: Context) :
+        LinksAdapter(activity) {
 
-    override fun onCreateViewHolder(parent: ViewGroup?,
-                                    viewType: Int): RecyclerView.ViewHolder {
-        return LinksAdapter.ItemUI().createHolder(
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+        return WishesAdapter.ItemUI().createHolder(
                 AnkoContext.create(parent!!.context,
                         parent))
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder,
-                                  position: Int) {
-        holder as LinksAdapter.DrawerHolder
-        holder.item = data[position]
-        holder.adapter = this
-        holder.onPostCreated()
-
     }
 
     class ItemUI : AnkoComponent<ViewGroup> {
@@ -43,13 +35,14 @@ open class LinksAdapter(activity: Context) :
                 verticalLayout {
                     lparams(width = matchParent)
                     nameText = textView {
+                        textColor = BaseActivity.purple
                         textSize = (PARAM_LAYOUT * 2).toFloat()
                     }.lparams(width = matchParent) {
                         margin = dip(PARAM_LAYOUT * 2)
                     }
-                    view {
-                        backgroundColor = Color.GRAY
-                    }.lparams(width = matchParent, height = 1)
+//                    view {
+//                        backgroundColor = Color.GRAY
+//                    }.lparams(width = matchParent, height = 1)
                 }
             }
         }
@@ -62,16 +55,5 @@ open class LinksAdapter(activity: Context) :
 
     }
 
-    class DrawerHolder(itemView: View) : BaseHolder<Link>(itemView) {
 
-        lateinit var nameText: TextView
-
-        override fun onPostCreated() {
-            nameText.text = item!!.name
-            itemView.onClick {
-                item!!.direction.run()
-            }
-
-        }
-    }
 }

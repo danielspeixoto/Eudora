@@ -1,38 +1,38 @@
 package com.hackathonix.eudora.view.activity
 
 import android.app.ProgressDialog
-import android.app.SearchManager
-import android.content.ComponentName
-import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.*
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.Gravity
-import android.view.Menu
 import android.view.MenuItem
 import com.hackathonix.eudora.R
 import com.hackathonix.eudora.model.ClientModel
+import com.hackathonix.eudora.model.Product
 import com.hackathonix.eudora.model.ProductModel
-import com.hackathonix.eudora.util.EMPTY_STRING
+import com.hackathonix.eudora.util.Message
 import com.hackathonix.eudora.view.recycler.adapter.DrawerAdapter
 import com.hackathonix.eudora.view.recycler.adapter.ProductAdapter
-import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.design.appBarLayout
 import org.jetbrains.anko.design.coordinatorLayout
+import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.drawerLayout
-import org.jetbrains.anko.support.v4.swipeRefreshLayout
+import org.jetbrains.anko.verticalLayout
 
 /**
- * Created by daniel on 8/11/17.
+ * Created by daniel on 8/12/17.
  */
-class HomeActivity : BaseActivity()  {
+class ProductGoalActivity : BaseActivity()  {
 
     lateinit var list: RecyclerView
     lateinit var refreshLayout : SwipeRefreshLayout
@@ -67,9 +67,9 @@ class HomeActivity : BaseActivity()  {
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 coordinatorLayout {
                     list = recyclerView {
-                        layoutManager = GridLayoutManager(this@HomeActivity, 2)
+                        layoutManager = GridLayoutManager(this@ProductGoalActivity, 2)
                         adapter = visitorAdapter
-                        ProductModel().products.forEach {
+                        Message.data.forEach {
                             visitorAdapter.addItem(it)
                         }
                     }.lparams(width = matchParent, height = matchParent)
@@ -77,7 +77,7 @@ class HomeActivity : BaseActivity()  {
             }.lparams(width = matchParent, height = matchParent)
             drawer = recyclerView {
                 backgroundColor = gold
-                layoutManager = LinearLayoutManager(this@HomeActivity)
+                layoutManager = LinearLayoutManager(this@ProductGoalActivity)
                 adapter = drawerAdapter
             }.lparams(width = matchParent, height = matchParent) {
                 gravity = Gravity.START

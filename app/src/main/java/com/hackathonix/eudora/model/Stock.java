@@ -47,6 +47,8 @@ public class Stock {
 
         if(item != null) {
             item.inc(amount);
+        } else {
+            soldProducts.add(new SoldItem(prod, amount));
         }
     }
 
