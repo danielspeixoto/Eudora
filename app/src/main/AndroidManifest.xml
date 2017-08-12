@@ -20,8 +20,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".view.activity.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity android:name=".view.activity.ChooseEffectActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".view.activity.GoalsActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".view.activity.MainActivity"

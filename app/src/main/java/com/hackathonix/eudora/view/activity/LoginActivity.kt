@@ -1,8 +1,14 @@
 package com.hackathonix.eudora.view.activity
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import com.hackathonix.eudora.R
+import com.hackathonix.eudora.model.UserModel
+import com.hackathonix.eudora.util.PARAM_LAYOUT
+import com.hackathonix.eudora.view.activity.custom.EditField
 import com.hackathonix.eudora.view.activity.custom.editField
 import org.jetbrains.anko.*
 
@@ -11,41 +17,77 @@ import org.jetbrains.anko.*
  */
 class LoginActivity : BaseActivity() {
 
+    lateinit var email : EditField
+    lateinit var password : EditField
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var purple = Color.rgb(82,44,132)
-       // var gold = Color.rgb(,,)
+        var gold = Color.rgb(193,159,88)
         relativeLayout {
             backgroundColor = purple
             verticalLayout {
-                imageView {
-                    imageResource = R.drawable.btn_facebook
+                relativeLayout {
+                    imageView {
+                        imageResource = R.drawable.logo
+                    }.lparams(width = 200, height = 200) {
+                        bottomMargin = 200
+                        centerHorizontally()
+                    }
+                }.lparams(width = matchParent)
+                verticalLayout {
+                    email = editField {
+                        textColor = purple
+                        hint = "Email"
+                        inputType = InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+                    }.lparams(width = matchParent) {
+                        bottomMargin = 30
+                    }
+                    email.getBackground().mutate().setColorFilter(getResources().getColor(R.color.golden_eu), PorterDuff.Mode.SRC_ATOP);
+                    password = editField {
+                        textColor = purple
+                        hint = "Senha"
+                        inputType = EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_WEB_PASSWORD
+                    }.lparams(width = matchParent) {
+                        bottomMargin = 60
+                    }
+                    password.getBackground().mutate().setColorFilter(getResources().getColor(R.color.golden_eu), PorterDuff.Mode.SRC_ATOP);
+                }.lparams(width = matchParent) {
+                    bottomPadding = 90
+                    topPadding = bottomPadding
                 }
-                editField {
-                    backgroundColor = purple
-                    hint = "Email"
-                }
-                editField {
-                    backgroundColor = purple
-                    hint = "Senha"
+
+                relativeLayout {
+
+                    textView("Cadastre-se") {
+                        textColor = gold
+                        textSize = (PARAM_LAYOUT * 2).toFloat()
+                        padding = 20
+                    }.lparams {
+                        alignParentLeft()
+                    }
+                    button {
+                        text = "Entrar"
+                        backgroundColor = gold
+                        textColor = purple
+                        padding = PARAM_LAYOUT * 2
+                        onClick {
+                            UserModel.logIn(email.text.toString(), password.text.toString()).subscribe( {_ ->
+                                startActivity<HomeActivity>()
+                            })
+                        }
+                    }.lparams {
+                        alignParentRight()
+                    }
+                }.lparams {
+                    margin = 100
                 }
             }.lparams(width = matchParent) {
                 centerInParent()
                 leftMargin = 50
                 rightMargin = leftMargin
             }
-            relativeLayout {
-                textView("Cadastre-se") {
 
-                }.lparams {
-                    alignParentLeft()
-                }
-                button {
-                    text = "Entrar"
-                }.lparams {
-                    alignParentRight()
-                }
-            }
         }
     }
 }

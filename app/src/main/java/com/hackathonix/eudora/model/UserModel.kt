@@ -14,6 +14,10 @@ object UserModel {
 
     var users : ArrayList<User> = arrayListOf()
 
+    init {
+        users.add(User("d@gmail.com", "1", "Daniel", 5000.0 , 2000.0))
+    }
+
     var currentUser: User? = null
         get private set
 

@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/purple_eu</item>
         <item name="colorPrimaryDark">@color/dark_eu</item>
         <item name="colorAccent">@color/golden_eu</item>
+        <item name="colorControlNormal">@color/golden_eu</item>
+        <item name="colorControlActivated">@color/golden_eu</item>
+        <item name="colorControlHighlight">@color/golden_eu</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
