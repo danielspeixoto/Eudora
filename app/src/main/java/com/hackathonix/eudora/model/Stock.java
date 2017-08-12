@@ -17,7 +17,7 @@ import java.util.TreeMap;
 
 public class Stock {
     private List<SoldItem> soldProducts;
-    private Map<String, List<SoldItem>> productsClients;
+    private Map<String, List<Client>> productsClients;
     private static Stock stock;
 
     private Stock(){
@@ -53,16 +53,16 @@ public class Stock {
             item = new SoldItem(prod, amount);
             soldProducts.add(item);
         }
-        List<SoldItem> soldItems = this.productsClients.get(client.getName());
+        List<Client> soldItems = this.productsClients.get(prod.getName());
         if(soldItems == null){
             soldItems = new ArrayList<>();
         }
-        soldItems.add(item);
-        this.productsClients.put(client.getName(), soldItems);
+        soldItems.add(client);
+        this.productsClients.put(prod.getName(), soldItems);
     }
 
-    public List<SoldItem> getClientPurchases(String clientName){
-        List<SoldItem> soldItems = this.productsClients.get(clientName);
+    public List<Client> getClientFromProduct(String productName){
+        List<Client> soldItems = this.productsClients.get(productName);
         Collections.reverse(soldItems);
         return soldItems;
     }
