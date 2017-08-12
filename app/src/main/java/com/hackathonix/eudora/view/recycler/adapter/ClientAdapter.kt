@@ -51,11 +51,25 @@ class ClientAdapter(activity: Context) :
                 linearLayout {
                     lparams(width = matchParent)
                     cardView = cardView {
-                        linearLayout {
-                            image = imageView()
+//                        linearLayout {
+//                            image = imageView()
+//                            text = textView() {
+//                                textSize = (PARAM_LAYOUT * 2).toFloat()
+//                            }.lparams {
+//                                leftPadding = 70
+//                            }
+//                        }
+
+                        relativeLayout() {
+                            image = imageView().lparams(width = 80) {
+                                id = 9023
+                                alignParentLeft()
+                            }
                             text = textView() {
+                                id = 234292
                                 textSize = (PARAM_LAYOUT * 2).toFloat()
                             }.lparams {
+                                rightOf(image)
                                 leftPadding = 70
                             }
                         }
@@ -86,6 +100,7 @@ class ClientAdapter(activity: Context) :
 
         override fun onPostCreated() {
             //     nameText.text = item!!.name
+            text.text = item!!.name
             image.setImageResource(item!!.picture)
         }
     }
