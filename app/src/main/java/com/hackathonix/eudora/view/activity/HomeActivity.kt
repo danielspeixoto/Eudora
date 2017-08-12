@@ -67,7 +67,7 @@ class HomeActivity : BaseActivity()  {
                     list = recyclerView {
                         layoutManager = GridLayoutManager(this@HomeActivity, 2)
                         adapter = visitorAdapter
-                        ProductModel.products.forEach {
+                        ProductModel().products.forEach {
                             visitorAdapter.addItem(it)
                         }
                     }.lparams(width = matchParent, height = matchParent)
