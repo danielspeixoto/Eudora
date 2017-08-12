@@ -1,6 +1,9 @@
 package com.hackathonix.eudora.model;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,16 +16,11 @@ import java.util.TreeMap;
  */
 
 public class Stock {
-    private Map<Product, Integer> soldProducts;
+    private List<SoldItem> soldProducts;
     private static Stock stock;
 
     private Stock(){
-        this.soldProducts = new TreeMap<>(new Comparator<Product>() {
-            @Override
-            public int compare(Product a, Product b) {
-             return   soldProducts.get(b).compareTo(soldProducts.get(a));
-            }
-        });
+        this.soldProducts = new ArrayList<>();
     }
 
     public static Stock getInstance(){
@@ -32,26 +30,34 @@ public class Stock {
         return stock;
     }
 
+    public SoldItem find(String name){
+        for(SoldItem p:this.soldProducts){
+            if(p.getProduct().getName().equals(name)){
+                return p;
+            }
+        }
+        return null;
+    }
     public int getSalesNumber(Product prod){
-        return this.soldProducts.get(prod);
+        return this.find(prod.getName()).getAmount();
     }
 
     public void registerSoldIten(Product prod, int amount){
-        Integer freq = this.soldProducts.get(prod);
-        if(freq != null){
-            this.soldProducts.put(prod, freq + amount);
-        }else{
-            this.soldProducts.put(prod, amount);
+        SoldItem item = this.find(prod.getName());
+
+        if(item != null) {
+            item.inc(amount);
         }
     }
 
     // k = number of best sellers, cat = category
     public List<Product> bestSellerByCategory(int cat, int k){
+        Collections.sort(this.soldProducts);
         List<Product> bestSellers = new ArrayList<>();
         int i = 0;
-        Iterator<Map.Entry<Product, Integer>> iterator = this.soldProducts.entrySet().iterator();
+        Iterator<SoldItem> iterator = this.soldProducts.iterator();
         while(iterator.hasNext() && i<k){
-            Product prod = iterator.next().getKey();
+            Product prod = iterator.next().getProduct();
             if (prod.getCategory() == cat) {
                 i++;
                 bestSellers.add(prod);
@@ -61,4 +67,40 @@ public class Stock {
         return bestSellers;
     }
 
+}
+
+class SoldItem implements Comparable<SoldItem>{
+    private Product product;
+    private Integer amount;
+
+    public SoldItem(Product prod, Integer amount){
+        this.product = prod;
+        this.amount = amount;
+    }
+
+    public void inc(int size){
+        this.amount+=size;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    @Override
+    public int compareTo(@NonNull SoldItem soldItem) {
+        return soldItem.getAmount().compareTo(this.getAmount());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof SoldItem){
+            SoldItem item = (SoldItem) obj;
+            return item.getProduct().getName().equals(this.product.getName());
+        }
+        return false;
+    }
 }
