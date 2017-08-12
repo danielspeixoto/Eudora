@@ -34,6 +34,7 @@ class MainActivity : BaseActivity() {
                 }
                 this@MainActivity.runOnUiThread({
                     startActivity<LoginActivity>()
+                    finish()
                 })
             }
         })

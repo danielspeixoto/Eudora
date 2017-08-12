@@ -1,5 +1,7 @@
 package com.hackathonix.eudora.view.recycler.adapter
 
+import com.hackathonix.eudora.view.activity.BaseActivity
+
 /**
  * Created by daniel on 8/11/17.
  */

@@ -11,16 +11,15 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SearchView
-import android.support.v7.widget.Toolbar
+import android.support.v7.widget.*
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import com.hackathonix.eudora.R
+import com.hackathonix.eudora.model.ProductModel
 import com.hackathonix.eudora.util.EMPTY_STRING
 import com.hackathonix.eudora.view.recycler.adapter.DrawerAdapter
+import com.hackathonix.eudora.view.recycler.adapter.ProductAdapter
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.design.appBarLayout
@@ -67,8 +66,11 @@ class HomeActivity : BaseActivity()  {
                 coordinatorLayout {
                     refreshLayout = swipeRefreshLayout {
                         list = recyclerView {
-                            layoutManager = LinearLayoutManager(this@HomeActivity)
+                            layoutManager = GridLayoutManager(this@HomeActivity, 2)
                             adapter = visitorAdapter
+                            ProductModel.products.forEach {
+                                visitorAdapter.addItem(it)
+                            }
                         }.lparams(width = matchParent, height = matchParent)
                     }.lparams(width = matchParent, height = matchParent)
                 }.lparams(width = matchParent, height = matchParent)
@@ -113,11 +115,12 @@ class HomeActivity : BaseActivity()  {
 //    }
 
     override fun onBackPressed() {
-        if (!searchView.isIconified()) {
-            searchView.setIconified(true);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+//        if (!searchView.isIconified()) {
+//            searchView.setIconified(true);
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
