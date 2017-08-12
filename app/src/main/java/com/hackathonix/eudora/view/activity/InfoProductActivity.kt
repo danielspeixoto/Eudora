@@ -8,7 +8,9 @@ import com.hackathonix.eudora.model.RedEffect
 import com.hackathonix.eudora.util.PARAM_LAYOUT
 import org.jetbrains.anko.*
 import android.widget.CompoundButton
-
+import com.hackathonix.eudora.model.Stock
+import com.hackathonix.eudora.view.recycler.adapter.ClientAdapter
+import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 
 /**
@@ -53,6 +55,10 @@ class InfoProductActivity : BaseActivity() {
 
                 if(product.isAvailable) {
                     swt.isChecked = true
+                }
+                recyclerView {
+                    var adp = ClientAdapter(this)
+                    Stock.getInstance().getSalesNumber(product)
                 }
                 if(product.canTry) {
                     button("Experimente") {
